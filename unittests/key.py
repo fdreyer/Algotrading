@@ -29,7 +29,6 @@ critic
 ability
 case"""
 
+
 def get_private_key():
     return algosdk.mnemonic.to_private_key(private_phrase)
-
-

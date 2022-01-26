@@ -31,13 +31,13 @@ class TestStream(unittest.TestCase):
         samplingLogger = logging.getLogger("SamplingLogger")
         samplingLogger.setLevel(logging.FATAL)
 
-        poolStream = PoolStream(asset1=asset1, asset2=asset2, client=client, log_interval=log_interval,
-                                sample_interval=sample_interval, logger=samplingLogger)
+        poolStream = PoolStream(asset1=asset1, asset2=asset2, client=client, log_interval=3,
+                                sample_interval=4, logger=samplingLogger)
 
         def logf(x):
             self.logger.info(x)
 
-        logger_coroutine = log_stream(poolStream.run(), timeout=timeout, logger_fun=logf)
+        logger_coroutine = log_stream(poolStream.run(), timeout=5, logger_fun=logf)
         asyncio.run(logger_coroutine)
 
     def test_pools(self, timeout=11, sample_interval=1, log_interval=5):
